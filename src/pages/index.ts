@@ -1,3 +1,4 @@
 import Home from "./home";
+import CurrentWeather from "./current-weather";
 
-export { Home };
+export { Home, CurrentWeather };

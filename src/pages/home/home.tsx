@@ -2,7 +2,7 @@ import HomeIcon from "../../assets/home-icon.svg";
 
 const Home = () => {
   return (
-    <div className="flex h-[calc(100vh-7.75rem)] sm:h-[calc(100vh-5.25rem)] bg-black text-white items-center justify-center px-10">
+    <div className="flex h-[calc(100vh-7.75rem)] sm:h-[calc(100vh-5.25rem)] bg-white text-black items-center justify-center px-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
         {/* Left: Description */}
         <div className="flex flex-col justify-center">

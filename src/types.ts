@@ -46,4 +46,36 @@ export interface WeatherData {
   rain: Rain;
   sys: Sys;
   dt_txt: string;
+  name: string;
+}
+
+interface CityInfo {
+  id: number;
+  name: string;
+  coord: {
+    lat: number;
+    lon: number;
+  };
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+}
+
+export interface WeatherApiResponseData {
+  cod: string;
+  message: number;
+  cnt: number;
+  list: WeatherData[];
+  city: CityInfo;
+}
+
+export interface IShowWeatherData {
+  temperature: number;
+  weatherType: string;
+  iconId: string;
+  windSpeed: number;
+  timeStamp: string; // formatted 24-hour time, e.g., "14:00"
+  currentDate: string;
 }

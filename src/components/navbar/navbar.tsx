@@ -1,14 +1,15 @@
 import useNavbarController from "./navbar-controller";
+import HeaderIcon from "../../assets/weather-icon.svg";
 
 const Navbar = () => {
   const { searchInput, onChnageOfSearchInput, onClickOfSearchButton } =
     useNavbarController();
 
   return (
-    <nav className="bg-white border-gray-200 ">
+    <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between flex-col md:flex-row mx-auto p-4">
         <div className="flex items-center space-x-3  rtl:space-x-reverse">
-          <img src="./weather-icon.svg" className="h-13" alt="Navbar Logo" />
+          <img src={HeaderIcon} className="h-13" alt="Navbar Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap ">
             Weather App
           </span>
@@ -47,6 +48,7 @@ const Navbar = () => {
 
               <button
                 type="button"
+                value={searchInput}
                 onClick={onClickOfSearchButton}
                 className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 "
               >
