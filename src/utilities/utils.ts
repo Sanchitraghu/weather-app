@@ -1,12 +1,7 @@
 import type { IShowWeatherData, WeatherData } from "../types";
 
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString.replace(" ", "T"));
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-
-  return `${day}/${month}/${year}`;
+export const formatDate = (dateString: string): string => {
+  return new Date(dateString).toLocaleDateString("en-GB");
 };
 
 export const getCorrectTimeStamp = (date: string): string => {
@@ -43,7 +38,7 @@ export const getCurrentWeatherData = (
 
 export function getOneForecastPerDayFromNow(
   forecasts: WeatherData[]
-): WeatherData[] {
+): IShowWeatherData[] {
   const now = new Date();
 
   const resultMap = new Map();
@@ -60,5 +55,19 @@ export function getOneForecastPerDayFromNow(
     }
   }
 
-  return Array.from(resultMap.values());
+  const forecastArray = Array.from(resultMap.values())?.map((item) => {
+    return {
+      temperature: item.main.temp,
+      weatherType: item.weather[0].main,
+      iconId: item.weather[0].icon,
+      windSpeed: item.wind.speed,
+      // Converting the time to 24 hour format
+      timeStamp: getCorrectTimeStamp(item.dt_txt),
+      currentDate: formatDate(item.dt_txt),
+    };
+  });
+
+  return forecastArray;
 }
+
+export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);

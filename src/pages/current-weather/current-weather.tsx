@@ -1,12 +1,14 @@
-import { Card, NoDataBanner } from "../../components";
+import { Link } from "react-router-dom";
+import { Button, Card, NoDataBanner } from "../../components";
 import { SkeCurrentWeather } from "../../components/skeletons";
 import { WEATHER_URL } from "../../constants";
 import useCurrentWeatherController from "./current-weather-controller";
+import { capitalize } from "../../utilities/utils";
 
 const CurrentWeather = () => {
   const { weatherData, isDataLoading } = useCurrentWeatherController();
 
-  if (!weatherData?.cityName.toLowerCase() || isDataLoading) {
+  if (isDataLoading) {
     return <SkeCurrentWeather />;
   }
 
@@ -18,44 +20,47 @@ const CurrentWeather = () => {
           {/* Header Section */}
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold">
-              Weather in {weatherData.cityName}
+              Weather in {capitalize(weatherData.cityName)}
             </h1>
-            <p className="text-lg text-gray-900">
+            <p className="text-lg font-semibold text-gray-900">
               {weatherData.currentWeatherData[0].currentDate}
             </p>
           </div>
 
           {/* Main Current weather component */}
-          <Card {...weatherData.currentWeatherData[0]} />
+          <div className="flex flex-col sm:flex-row justify-between items-center bg-white bg-opacity-5 rounded-2xl p-6 shadow-md">
+            <div>
+              <p className="text-xl font-semibold ">
+                Temperature: {weatherData.currentWeatherData[0].temperature}°C
+              </p>
+              <p className="text-md ">
+                Weather: {weatherData.currentWeatherData[0].weatherType}
+              </p>
+              <p className="text-md ">
+                Wind: {weatherData.currentWeatherData[0].windSpeed} m/s
+              </p>
+            </div>
+            <img
+              src={`${WEATHER_URL.WEATHER_ICON_BASE_URL}/${weatherData.currentWeatherData[0].iconId}@4x.png`}
+              className="w-20 h-20"
+            />
+          </div>
 
           {/* Timeline Weather Data */}
           <div className="space-y-2">
             <h2 className="text-2xl font-bold">Today's Weather Timeline</h2>
             <div className="flex gap-4 overflow-x-auto pb-2">
-              {weatherData?.currentWeatherData
-                .slice(1)
-                .map((crntData, index) => (
-                  <div
-                    key={index}
-                    className="min-w-[120px] bg-white bg-opacity-5 rounded-xl p-4 text-center flex-shrink-0 shadow-sm"
-                  >
-                    <p className="text-lg font-medium ">{crntData.timeStamp}</p>
-                    <img
-                      src={`${WEATHER_URL.WEATHER_ICON_BASE_URL}/${crntData.iconId}@4x.png`}
-                      className=" w-12 h-12 mx-auto"
-                    />
-                    <p className="text-lg ">{crntData.temperature}°C</p>
-                  </div>
-                ))}
+              {weatherData?.currentWeatherData.slice(1).map((crntData) => (
+                <Card {...crntData} />
+              ))}
             </div>
           </div>
 
           {/* Forecast Button */}
-          <div className="text-center">
-            <button className="mt-4 mb-5 px-6 cursor-pointer py-3 bg-gray-900 text-white rounded-full font-semibold md:mb-0 hover:bg-black transition">
-              Forecast Weather for This City
-            </button>
-          </div>
+          <Button
+            btnText="Forecast Weather for This City"
+            cityName={weatherData.cityName}
+          />
         </div>
       ) : (
         <NoDataBanner />

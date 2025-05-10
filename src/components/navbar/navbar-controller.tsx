@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useNavbarController = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -13,14 +13,27 @@ const useNavbarController = () => {
 
   const onClickOfSearchButton = () => {
     const cityName = searchInput.toLowerCase().trim().split(" ").join("-");
-    if (cityName.length === 0) return;
 
-    navigate(`/city/${cityName}`);
+    const crntCityName = location.pathname.split("/")[2];
+
+    // If user search for the same city it will not navigate
+    if (cityName.length === 0 || cityName === crntCityName) return;
+
+    if (location.pathname.split("/")[3] === "forecast") {
+      navigate(`/city/${cityName}/forecast`);
+    } else {
+      navigate(`/city/${cityName}`);
+    }
   };
 
   useEffect(() => {
     const crntCity = location.pathname.split("/")[2];
-    setSearchInput(crntCity || "");
+
+    if (crntCity?.length === 0) {
+      navigate("/");
+    }
+
+    setSearchInput(crntCity.split("-").join(" ") || "");
   }, [location.pathname]);
 
   return { searchInput, onChnageOfSearchInput, onClickOfSearchButton };

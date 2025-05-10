@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
-import { CurrentWeather, Home } from "./pages";
+import { CurrentWeather, ForecastWeather, Home } from "./pages";
 import "./App.css";
 
 function App() {
@@ -11,6 +11,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/city/:cityName" element={<CurrentWeather />} />
+          <Route
+            path="/city/:cityName/forecast"
+            element={<ForecastWeather />}
+          />
         </Routes>
       </BrowserRouter>
     </>

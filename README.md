@@ -6,10 +6,9 @@ A simple weather app that allows users to search for cities and view current wea
 
 ## Tech Stack
 
-- Frontend: React, TypeScript, React Router
-- Backend: Node.js (if applicable)
+- Frontend: React, TypeScript, React Router, Redux
 - API: OpenWeatherMap API
-- Libraries: Axios for API calls
+- Libraries: Axios for API calls, TailwindCss for css
 
 ## Features
 
@@ -18,8 +17,8 @@ A simple weather app that allows users to search for cities and view current wea
 - View 5-day weather forecast.
 - Mobile-responsive UI.
 
-## Installation
+## Important Note
 
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm start` to start the app locally.
+This project uses the OpenWeather API, and the API credentials are stored in the `.env` file included in the repository.
+
+⚠️ **Please note:** Including the `.env` file in version control is **not recommended** as a best practice due to security concerns. It is included here only for simplicity and demonstration purposes. In a real-world application, sensitive information should be excluded from Git using a `.gitignore` file and managed securely.

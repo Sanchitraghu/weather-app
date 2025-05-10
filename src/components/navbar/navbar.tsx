@@ -1,5 +1,6 @@
 import useNavbarController from "./navbar-controller";
 import HeaderIcon from "../../assets/weather-icon.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { searchInput, onChnageOfSearchInput, onClickOfSearchButton } =
@@ -8,12 +9,15 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between flex-col md:flex-row mx-auto p-4">
-        <div className="flex items-center space-x-3  rtl:space-x-reverse">
+        <Link
+          to="/"
+          className="flex items-center space-x-3  rtl:space-x-reverse"
+        >
           <img src={HeaderIcon} className="h-13" alt="Navbar Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap ">
             Weather App
           </span>
-        </div>
+        </Link>
 
         <div className="flex w-full md:w-auto">
           <div className="relative w-full">

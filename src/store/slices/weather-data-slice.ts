@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { IShowWeatherData, WeatherData } from "../../types";
+import type { IShowWeatherData } from "../../types";
 
 export interface IWeatherSliceDataState {
   cityName: string;
   currentWeatherData: IShowWeatherData[] | null;
-  foreCastData: WeatherData[] | null;
+  foreCastData: IShowWeatherData[] | null;
 }
 
 const initialState: IWeatherSliceDataState = {

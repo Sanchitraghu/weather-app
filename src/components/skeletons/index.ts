@@ -1,3 +1,4 @@
 import SkeCurrentWeather from "./current-weather";
+import SkeForecastWeather from "./forecast-weather";
 
-export { SkeCurrentWeather };
+export { SkeCurrentWeather, SkeForecastWeather };

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
-import { onGetWeatherData } from "../../utilities/get-weather-data";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
+import { onGetWeatherData } from "../../utilities/get-weather-data";
+
 import {
   getCurrentWeatherData,
   getOneForecastPerDayFromNow,
@@ -14,8 +14,9 @@ import {
   addWeatherData,
   removeWeatherData,
 } from "../../store/slices/weather-data-slice";
+import { useParams } from "react-router-dom";
 
-const useCurrentWeatherController = () => {
+const useForecastWeatherController = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   const { cityName } = useParams<{
@@ -28,7 +29,7 @@ const useCurrentWeatherController = () => {
 
   const dispatch = useDispatch();
 
-  async function onGetCurrentWeather(city?: string): Promise<void> {
+  async function onGetForecastWeather(city?: string): Promise<void> {
     try {
       const response = await onGetWeatherData(city || "");
 
@@ -59,20 +60,14 @@ const useCurrentWeatherController = () => {
 
     if (cityName !== weatherData.cityName) {
       setIsDataLoading(true);
-
       dispatch(removeWeatherData());
-      onGetCurrentWeather(cityName);
+      onGetForecastWeather(cityName);
     } else if (isDataLoading) {
       setIsDataLoading(false);
     }
   }, [cityName]);
 
-  return {
-    cityName,
-    weatherData,
-    isDataLoading,
-    onGetCurrentWeather,
-  };
+  return { weatherData, isDataLoading };
 };
 
-export default useCurrentWeatherController;
+export default useForecastWeatherController;
