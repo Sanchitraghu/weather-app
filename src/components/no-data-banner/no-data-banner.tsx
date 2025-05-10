@@ -1,6 +1,8 @@
 import { WEATHER_URL } from "../../constants";
 
-const NoDataBanner = () => {
+const NoDataBanner: React.FC<{
+  cityName: string;
+}> = ({ cityName = "City" }) => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center text-center bg-white text-gray-900 px-6 py-12 md:py-24">
       {/* Image */}
@@ -16,8 +18,9 @@ const NoDataBanner = () => {
           Oops! Weather Not Found
         </h2>
         <p className="text-gray-700 max-w-md">
-          We couldn't retrieve weather data for the city you searched. Please
-          try again with a different city name.
+          We couldn't retrieve weather data for{" "}
+          <span className="font-bold">{cityName}</span>. Please try again with a
+          different city name.
         </p>
       </div>
     </div>

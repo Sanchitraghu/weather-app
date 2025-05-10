@@ -63,7 +63,7 @@ const CurrentWeather = () => {
           />
         </div>
       ) : (
-        <NoDataBanner />
+        <NoDataBanner cityName={weatherData.cityName} />
       )}
     </div>
   );

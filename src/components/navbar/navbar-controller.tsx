@@ -33,7 +33,7 @@ const useNavbarController = () => {
       navigate("/");
     }
 
-    setSearchInput(crntCity.split("-").join(" ") || "");
+    setSearchInput(crntCity?.split("-")?.join(" ") || "");
   }, [location.pathname]);
 
   return { searchInput, onChnageOfSearchInput, onClickOfSearchButton };

@@ -33,7 +33,7 @@ const ForecastWeather = () => {
           />
         </div>
       ) : (
-        <NoDataBanner />
+        <NoDataBanner cityName={weatherData.cityName} />
       )}
     </div>
   );
