@@ -17,6 +17,12 @@ A simple weather app that allows users to search for cities and view current wea
 - View 5-day weather forecast.
 - Mobile-responsive UI.
 
+## Installation
+
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run dev` to start the app locally.
+
 ## Important Note
 
 This project uses the OpenWeather API, and the API credentials are stored in the `.env` file included in the repository.
