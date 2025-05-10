@@ -20,8 +20,11 @@ A simple weather app that allows users to search for cities and view current wea
 ## Installation
 
 1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm run dev` to start the app locally.
+2. Go to cloned directory `cd weather-app`
+3. Run `npm install` to install dependencies.
+4. Run `npm run dev` to start the app locally.
+
+- Deployed URL : https://sanchit-weather-app.netlify.app/
 
 ## Important Note
 
