@@ -1,7 +1,13 @@
-const SkeCurrentWeather = () => {
+const SkeCurrentWeather: React.FC<{
+  isDarkMode: boolean;
+}> = ({ isDarkMode }) => {
   return (
-    <div className="h-[calc(100vh-10rem)] bg-white text-gray-900 px-4 py-6 md:px-12 lg:px-24 animate-pulse">
-      <div className=" mx-auto space-y-6">
+    <div
+      className={`min-h-[calc(100vh-5.25rem)]  px-4 py-6 md:px-12 lg:px-24  ${
+        isDarkMode ? "bg-black text-gray-200" : "bg-white text-gray-900"
+      }`}
+    >
+      <div className="mx-auto space-y-6 animate-pulse">
         {/* Header Section Skeleton */}
         <div className="text-center space-y-2">
           <div className="h-6 w-48 mx-auto bg-gray-300 rounded"></div>

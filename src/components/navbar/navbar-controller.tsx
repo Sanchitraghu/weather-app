@@ -1,14 +1,31 @@
 import { useEffect, useState, type ChangeEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import type { RootState } from "../../store/store";
+import { toggleTheme } from "../../store/slices/theme-slice";
 
 const useNavbarController = () => {
   const [searchInput, setSearchInput] = useState<string>("");
+
+  const themeData = useSelector(
+    (store: RootState) => store.themeSlice.themeData
+  );
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const onChnageOfSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     const searchInputValue = e.target.value;
     setSearchInput(searchInputValue);
+  };
+
+  const onToggleTheme = (value: boolean) => {
+    if (value) {
+      dispatch(toggleTheme("dark"));
+    } else {
+      dispatch(toggleTheme("light"));
+    }
   };
 
   const onClickOfSearchButton = () => {
@@ -36,7 +53,13 @@ const useNavbarController = () => {
     setSearchInput(crntCity?.split("-")?.join(" ") || "");
   }, [location.pathname]);
 
-  return { searchInput, onChnageOfSearchInput, onClickOfSearchButton };
+  return {
+    searchInput,
+    isDarkMode: themeData.theme === "dark",
+    onChnageOfSearchInput,
+    onClickOfSearchButton,
+    onToggleTheme,
+  };
 };
 
 export default useNavbarController;

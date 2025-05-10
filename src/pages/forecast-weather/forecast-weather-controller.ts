@@ -27,6 +27,10 @@ const useForecastWeatherController = () => {
     (store: RootState) => store.weatherSlice.weatherData
   );
 
+  const themeData = useSelector(
+    (store: RootState) => store.themeSlice.themeData
+  );
+
   const dispatch = useDispatch();
 
   async function onGetForecastWeather(city?: string): Promise<void> {
@@ -67,7 +71,11 @@ const useForecastWeatherController = () => {
     }
   }, [cityName]);
 
-  return { weatherData, isDataLoading };
+  return {
+    weatherData,
+    isDataLoading,
+    isDarkMode: themeData.theme === "dark",
+  };
 };
 
 export default useForecastWeatherController;

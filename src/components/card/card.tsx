@@ -8,16 +8,19 @@ const Card = ({
   iconId,
   currentDate,
   timeStamp,
+  isDarkMode,
   isForecastPage,
-}: IShowWeatherData & { isForecastPage?: boolean }) => {
+}: IShowWeatherData & { isForecastPage?: boolean; isDarkMode: boolean }) => {
   return (
     <div
       key={currentDate}
-      className={`bg-white text-black cursor-pointer rounded-2xl flex flex-col items-center justify-between  transition-all duration-300 transform hover:-translate-y-1  ${
+      className={`cursor-pointer rounded-2xl flex flex-col items-center justify-between transition-all duration-300 transform hover:-translate-y-1  ${
         isForecastPage
           ? "hover:shadow-2xl shadow-lg p-6"
           : "hover:shadow-lg shadow-sm py-4 px-8"
-      } `}
+      } 
+      ${isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-black"}
+      `}
     >
       {isForecastPage ? (
         <p className="text-md font-medium tracking-wide mb-3">{currentDate}</p>
@@ -40,9 +43,7 @@ const Card = ({
 
       {isForecastPage && (
         <>
-          <p className="text-base capitalize italic mt-2 text-gray-800 ">
-            {weatherType}
-          </p>
+          <p className={`text-base capitalize italic mt-2`}>{weatherType}</p>
           <p className="mt-2 text-sm font-medium tracking-wide">
             Wind: {windSpeed} m/s
           </p>

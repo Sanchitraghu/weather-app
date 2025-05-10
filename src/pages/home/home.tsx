@@ -1,8 +1,15 @@
 import HomeIcon from "../../assets/home-icon.svg";
+import useHomeController from "./home-controller";
 
 const Home = () => {
+  const { isDarkMode } = useHomeController();
+
   return (
-    <div className="flex h-[calc(100vh-7.75rem)] sm:h-[calc(100vh-5.25rem)] bg-white text-black items-center justify-center px-10">
+    <div
+      className={`flex h-[calc(100vh-7.75rem)] sm:h-[calc(100vh-5.25rem)] items-center justify-center px-10 ${
+        isDarkMode ? "bg-black text-gray-200" : "bg-white text-black"
+      }`}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
         {/* Left: Description */}
         <div className="flex flex-col justify-center">
