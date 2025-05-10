@@ -23,8 +23,10 @@ const useNavbarController = () => {
   const onToggleTheme = (value: boolean) => {
     if (value) {
       dispatch(toggleTheme("dark"));
+      localStorage.setItem("theme", "dark");
     } else {
       dispatch(toggleTheme("light"));
+      localStorage.setItem("theme", "light");
     }
   };
 
